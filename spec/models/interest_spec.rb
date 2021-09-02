@@ -8,6 +8,7 @@ RSpec.describe Interest, type: :model do
 
   describe "associations" do
     # Using shoulda-matchers
+    it { should have_many(:user_interests) }
     it { should have_many(:users) }
   end
 
