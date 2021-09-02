@@ -40,6 +40,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use RSpec for testing
   gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
+  # Include REXML as RSpec dependency for Ruby 3+
+  gem 'rexml', '~> 3.2', '>= 3.2.4'
   # Use Factory Bot to generate model instances for tests
   gem 'factory_bot_rails', '~> 6.2'
 end
