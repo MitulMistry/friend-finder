@@ -25,15 +25,19 @@ RSpec.describe Interest, type: :model do
       interest2 = create(:interest, name: "A Interest")
       interest3 = create(:interest, name: "D Interest")
 
-      expect(Interest.alphabetized).to eq [interest2, interest3, interest1]
+      expect(Interest.ordered_alphabetized).to eq [interest2, interest3, interest1]
     end
 
     it "returns a sorted array of interest's users by creation date (newest first)" do
-      interest1 = create(:interest)
-      interest2 = create(:interest)
-      interest3 = create(:interest)
+      interest = create(:interest)
+      user1 = create(:user)
+      user2 = create(:user)
+      user3 = create(:user)
+      interest.users << user1
+      interest.users << user2
+      interest.users << user3
 
-      expect(Interest.ordered_newest).to eq [interest3, interest2, interest1]
+      expect(interest.users_ordered_newest).to eq [user3, user2, user1]
     end
   end
 end

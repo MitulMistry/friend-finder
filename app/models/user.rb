@@ -8,4 +8,14 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 40 }
   validates :password, presence: true
+
+  extend ClassOrderable
+
+  def sent_messages_newest
+    self.sent_messages.order(created_at: :desc)
+  end
+
+  def received_messages_newest
+    self.received_messages.order(created_at: :desc)
+  end
 end
