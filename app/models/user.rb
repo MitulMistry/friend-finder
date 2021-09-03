@@ -6,8 +6,10 @@ class User < ApplicationRecord
   has_many :sent_messages, foreign_key: 'sender_user_id', class_name: 'Message'
   has_many :received_messages, foreign_key: 'recipient_user_id', class_name: 'Message'
 
-  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 40 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 40 }, format: { with: /\A[a-zA-Z0-9_-]+\Z/ }
+  validates :email, presence: true, length: { maximum: 100 }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true
+  validates :bio, length: { maximum: 2000 }
 
   extend ClassOrderable
 
