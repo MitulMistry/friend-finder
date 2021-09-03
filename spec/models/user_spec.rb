@@ -24,12 +24,34 @@ RSpec.describe User, type: :model do
   end
 
   describe "sort users" do
-    it "returns an array of all users sorted by creation date (newest first)"
+    it "returns an array of all users sorted by creation date (newest first)" do
+      user1 = create(:user)
+      user2 = create(:user)
+      user3 = create(:user)
+
+      expect(User.ordered_newest).to eq [user3, user2, user1]
+    end
   end
 
   describe "sort messages" do
-    it "returns an array of all sent messages sorted by creation date (newest first)"
+    before :each do
+      @user = create(:user)
+    end
+
+    it "returns an array of all sent messages sorted by creation date (newest first)" do
+      message1 = create(:message, sender: @user)
+      message2 = create(:message, sender: @user)
+      message3 = create(:message, sender: @user)
+
+      expect(@user.sent_messages_newest).to eq [message3, message2, message1]
+    end
     
-    it "returns an array of all receieved messages sorted by creation date (newest first)"
+    it "returns an array of all receieved messages sorted by creation date (newest first)" do
+      message1 = create(:message, recipient: @user)
+      message2 = create(:message, recipient: @user)
+      message3 = create(:message, recipient: @user)
+
+      expect(@user.received_messages_newest).to eq [message3, message2, message1]
+    end
   end
 end

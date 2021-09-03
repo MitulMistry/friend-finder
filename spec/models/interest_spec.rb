@@ -20,8 +20,20 @@ RSpec.describe Interest, type: :model do
   end
 
   describe "sort" do
-    it "returns an array of all interests sorted alphabetically"
+    it "returns an array of all interests sorted alphabetically" do
+      interest1 = create(:interest, name: "Z Interest")
+      interest2 = create(:interest, name: "A Interest")
+      interest3 = create(:interest, name: "D Interest")
 
-    it "returns a sorted array of interest's users by creation date (newest first)"
+      expect(Interest.alphabetized).to eq [interest2, interest3, interest1]
+    end
+
+    it "returns a sorted array of interest's users by creation date (newest first)" do
+      interest1 = create(:interest)
+      interest2 = create(:interest)
+      interest3 = create(:interest)
+
+      expect(Interest.ordered_newest).to eq [interest3, interest2, interest1]
+    end
   end
 end
