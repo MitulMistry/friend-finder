@@ -5,7 +5,7 @@ module ClassOrderable
     order(created_at: :desc)
   end
 
-  def randomized(count)
+  def randomized(count = 1)
     order(Arel.sql("RANDOM()")).first(count)
   end
 end

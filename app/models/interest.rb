@@ -4,6 +4,8 @@ class Interest < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
 
+  extend ClassOrderable
+
   def self.ordered_alphabetized
     order(:name)
   end
