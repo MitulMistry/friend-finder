@@ -28,6 +28,20 @@ RSpec.describe Interest, type: :model do
       expect(Interest.ordered_alphabetized).to eq [interest2, interest3, interest1]
     end
 
+    it "returns an array of all interests sorted by creation date (newest first)" do
+      interest1 = create(:interest)
+      interest2 = create(:interest)
+      interest3 = create(:interest)
+      expect(Interest.ordered_newest).to eq [interest3, interest2, interest1]
+    end
+
+    it "returns an array of randomized interests (with count based on argument)" do
+      4.times { create(:interest) }
+      expect(Interest.randomized(2).length).to be(2)
+      expect(Interest.randomized(3).length).to be(3)
+      expect(Interest.randomized(3)).to all(be_a(Interest))
+    end
+
     it "returns a sorted array of interest's users by creation date (newest first)" do
       interest = create(:interest)
       user1 = create(:user)
