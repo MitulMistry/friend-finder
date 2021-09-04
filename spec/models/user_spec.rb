@@ -47,12 +47,20 @@ RSpec.describe User, type: :model do
   end
 
   describe "sort users" do
-    it "returns an array of all users sorted by creation date (newest first)" do
-      user1 = create(:user)
-      user2 = create(:user)
-      user3 = create(:user)
+    before :each do
+      @user1 = create(:user)
+      @user2 = create(:user)
+      @user3 = create(:user)
+    end
 
-      expect(User.ordered_newest).to eq [user3, user2, user1]
+    it "returns an array of all users sorted by creation date (newest first)" do
+      expect(User.ordered_newest).to eq [@user3, @user2, @user1]
+    end
+
+    it "returns an array of randomized users (with count based on argument)" do
+      expect(User.randomized(2).length).to be(2)
+      expect(User.randomized(3).length).to be(3)
+      expect(User.randomized(3)).to all(be_a(User))
     end
   end
 

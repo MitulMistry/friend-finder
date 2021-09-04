@@ -3,5 +3,9 @@ module ClassOrderable
 
   def ordered_newest
     order(created_at: :desc)
-  end  
+  end
+
+  def randomized(count)
+    order(Arel.sql("RANDOM()")).first(count)
+  end
 end
