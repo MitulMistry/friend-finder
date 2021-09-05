@@ -27,26 +27,86 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /signup (new)" do
-    it "renders signup form template" do
+    it "renders signup form" do
       get signup_path
-      expect(response).to render_template(:new)
       expect(response).to have_http_status(200)
+      expect(response).to include("Sign Up")
     end
   end
 
   describe "POST / (create)" do
-    it "creates new user"
+    it "creates new user" do
+      user = build(:user)
+      
+      post users_path, params: {
+        user: {
+          username: user.username,
+          password: user.password,
+          email: user.email,
+          bio: user.bio
+        }
+      }
+
+      expect(response).to redirect_to(user_path(id: 1))
+      follow_redirect!
+
+      expect(response).to have_http_status(200)
+      expect(response.body).to include(user.username)
+      expect(response.body).to include(user.bio)
+    end
   end
 
   describe "GET /edit" do
-    it "renders edit form template"
+    it "renders edit form" do
+      user = create(:user)
+      login(user)
+      get edit_user_path(user)
+      expect(response).to have_http_status(200)
+      expect(response.body).to include("Edit")
+      expect(response.body).to include(user.username)
+    end
   end  
 
   describe "PATCH /:id (update)" do
-    it "updates user"
+    it "updates user" do
+      user = create(:user)
+      user_editted = build(:user)
+
+      # Log in as user
+      login(user)
+
+      post edit_user_path(user), params: {
+        user: {
+          username: user_editted.username,
+          email: user_editted.email,
+          bio: user_editted.bio
+        }
+      }
+
+      expect(response).to redirect_to(user_path(id: 1))
+      follow_redirect!
+
+      expect(response).to have_http_status(200)
+      expect(response.body).to include(user_editted.username)
+      expect(response.body).to include(user_editted.bio)
+    end
   end
 
   describe "DELETE /:id (destroy)" do
-    it "deletes user"
+    it "deletes user" do
+      user = create(:user)
+
+      # Log in as user
+      login(user)
+
+      delete user_path(user)
+
+      expect(User.find(user.id)).to be_nil
+
+      expect(response).to redirect_to(root_path)
+      follow_redirect!
+
+      expect(response).to have_http_status(200)      
+    end
   end
 end

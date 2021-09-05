@@ -12,7 +12,8 @@ RSpec.describe "Messages", type: :request do
       @message3 = create(:message, sender: @user1, recipient: @user2)
       @message4 = create(:message, sender: @user1, recipient: @user3)
 
-      # Log in as user1
+      # Log in as @user1
+      login(@user1)
     end
 
     context "GET /received" do
@@ -35,14 +36,15 @@ RSpec.describe "Messages", type: :request do
   end
 
   describe "GET /users/:id/new" do
-    it "renders new message form template" do
+    it "renders new message form" do
       user1 = create(:user)
       user2 = create(:user)
 
       # Log in as user1
+      login(user1)
 
       get new_user_message_path(user2)
-      expect(response).to render_template(:new)
+      expect(response.body).to include("Compose Message")
       expect(response.body).to include(user2.username)
     end
   end
@@ -53,6 +55,7 @@ RSpec.describe "Messages", type: :request do
       user2 = create(:user)
 
       # Log in as user1
+      login(user1)
       
       post messages_path, params: {
         message: {
@@ -65,7 +68,7 @@ RSpec.describe "Messages", type: :request do
       expect(response).to redirect_to(sent_path)
       follow_redirect!
 
-      expect(respone).to render_template(:sent)
+      expect(respone.body).to include("Sent")
       expect(response.body).to include(message.body)
     end
   end
