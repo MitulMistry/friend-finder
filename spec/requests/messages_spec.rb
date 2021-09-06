@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Messages", type: :request do
   describe "inbox/outbox" do
     before :each do
-      @user1 = create(:user)
+      @user1 = create_user_and_login
       @user2 = create(:user)
       @user3 = create(:user)
 
@@ -11,9 +11,6 @@ RSpec.describe "Messages", type: :request do
       @message2 = create(:message, sender: @user3, recipient: @user1)
       @message3 = create(:message, sender: @user1, recipient: @user2)
       @message4 = create(:message, sender: @user1, recipient: @user3)
-
-      # Log in as @user1
-      login(@user1)
     end
 
     context "GET /received" do
@@ -37,11 +34,8 @@ RSpec.describe "Messages", type: :request do
 
   describe "GET /users/:id/new" do
     it "renders new message form" do
-      user1 = create(:user)
+      user1 = create_user_and_login
       user2 = create(:user)
-
-      # Log in as user1
-      login(user1)
 
       get new_user_message_path(user2)
       expect(response.body).to include("Compose Message")
@@ -51,11 +45,8 @@ RSpec.describe "Messages", type: :request do
 
   describe "POST / (create)" do
     it "creates new message" do
-      user1 = create(:user)
+      user1 = create_user_and_login
       user2 = create(:user)
-
-      # Log in as user1
-      login(user1)
       
       post messages_path, params: {
         message: {

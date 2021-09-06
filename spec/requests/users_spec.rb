@@ -58,8 +58,7 @@ RSpec.describe "Users", type: :request do
 
   describe "GET /edit" do
     it "renders edit form" do
-      user = create(:user)
-      login(user)
+      user = create_user_and_login
       get edit_user_path(user)
       expect(response).to have_http_status(200)
       expect(response.body).to include("Edit")
@@ -69,21 +68,19 @@ RSpec.describe "Users", type: :request do
 
   describe "PATCH /:id (update)" do
     it "updates user" do
-      user = create(:user)
+      user = create_user_and_login
       user_editted = build(:user)
 
-      # Log in as user
-      login(user)
-
-      post edit_user_path(user), params: {
+      patch user_path(user), params: {
         user: {
           username: user_editted.username,
           email: user_editted.email,
-          bio: user_editted.bio
+          bio: user_editted.bio,
+          password: "editted"
         }
       }
 
-      expect(response).to redirect_to(user_path(id: 1))
+      expect(response).to redirect_to(user_path(user))
       follow_redirect!
 
       expect(response).to have_http_status(200)
@@ -94,14 +91,11 @@ RSpec.describe "Users", type: :request do
 
   describe "DELETE /:id (destroy)" do
     it "deletes user" do
-      user = create(:user)
-
-      # Log in as user
-      login(user)
+      user = create_user_and_login
 
       delete user_path(user)
 
-      expect(User.find(user.id)).to be_nil
+      expect{ User.find(user.id) }.to raise_error(ActiveRecord::RecordNotFound)
 
       expect(response).to redirect_to(root_path)
       follow_redirect!

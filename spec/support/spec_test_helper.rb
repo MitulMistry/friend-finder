@@ -1,10 +1,16 @@
 module SpecTestHelper
-  def login(user)
-    user = User.where(username: user.to_s).first if user.is_a?(Symbol)
-    request.session[:user_id] = user.id
-  end
 
-  def current_user
-    User.find(request.session[:user])
+  # Set user = create_user_and_login, when calling method
+  def create_user_and_login
+    password = Faker::Internet.password(min_length: 6, max_length: 20)
+    user = create(:user, password: password)
+
+    post sessions_path, params: {
+      username: user.username,
+      password: password
+    }
+
+    # Return created user after logging in
+    user
   end
 end

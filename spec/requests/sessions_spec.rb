@@ -28,10 +28,14 @@ RSpec.describe "Sessions", type: :request do
 
   describe "DELETE /logout (destroy)" do
     it "deletes session" do
-      user = create(:user)
+      # user = create(:user)
+
+      # login(user)
+      # request.session[:user_id] = user.id
+
+      user = create_user_and_login
 
       delete logout_path
-      expect(response.session[:user_id]).to eq(user.id)
       expect(response).to redirect_to(login_path)
       follow_redirect!
       expect(response.body).to include("Login")
