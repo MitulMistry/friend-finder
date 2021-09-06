@@ -33,7 +33,7 @@ RSpec.describe "Sessions", type: :request do
     it "deletes session" do
       user = create(:user)
 
-      delete sessions_path
+      delete logout_path
       expect(response.session[:user_id]).to eq(user.id)
       expect(response).to redirect_to(login_path)
       follow_redirect!

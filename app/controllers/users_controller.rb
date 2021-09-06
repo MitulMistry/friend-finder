@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.build(user_params)
-    if @user.save      
+    @user = User.new(user_params)
+    if @user.save
       redirect_to @user, notice: 'Account created successfully'
     else
       render :new, alert: 'Account creation failed'
