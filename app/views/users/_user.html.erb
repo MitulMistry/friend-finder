@@ -1,0 +1,13 @@
+<div class="user-card">
+  <h4><%= link_to user.username, user, class: "card-link" %></h4>
+  <p><%= user.bio %></p>
+  <% if !user.interests.empty? %>
+  <p>
+    <ul>
+    <% user.interests.each do |interest| %>
+      <li><%= link_to interest.name, interest, class: "interest-badge" %></li>
+    <% end %>
+    <ul>
+  </p>
+  <% end %>
+</div>
