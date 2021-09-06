@@ -95,6 +95,18 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
+# Configure Database Cleaner for tests
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
   # Include helper methods from support/spec_test_helper.rb
   config.include SpecTestHelper, type: :request
 end
