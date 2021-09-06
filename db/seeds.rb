@@ -53,7 +53,7 @@ end
     username: Faker::Internet.user_name,
     email: Faker::Internet.email,
     password: "password",
-    bio: Faker::Lorem.paragraph
+    bio: Faker::Lorem.paragraph_by_chars(number: rand(300..800))
   )
 
   interests = Interest.randomized(rand(3..6))
@@ -72,7 +72,7 @@ end
   message = Message.new(
     sender: user1,
     recipient: user2,
-    body: Faker::Lorem.paragraph
+    body: Faker::Lorem.paragraph_by_chars(number: rand(100..500))
   )
   message.save
 end

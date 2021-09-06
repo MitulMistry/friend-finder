@@ -1,6 +1,6 @@
 <div class="user-card">
   <h4><%= link_to user.username, user, class: "card-link" %></h4>
-  <p><%= user.bio %></p>
+  <p><%= user_truncated_bio(user) %></p>
   <% if !user.interests.empty? %>
   <p>
     <ul>

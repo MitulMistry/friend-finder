@@ -11,5 +11,17 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "with text over character limit" do
+    it "truncates writer bio to 150 characters" do
+      user = create(:user, bio: Faker::Lorem.characters(number: 175))
+      expect(helper.user_truncated_bio(user).length).to eq(150)
+    end
+  end
+
+  context "with text below character limit" do
+    it "doesn't truncate writer bio" do
+      user = create(:user, bio: Faker::Lorem.characters(number: 100))
+      expect(helper.user_truncated_bio(user).length).to eq(100)
+    end
+  end
 end
