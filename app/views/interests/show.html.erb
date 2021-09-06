@@ -1,0 +1,8 @@
+<h1><%= @interest.name %></h1>
+
+<% if @users.length > 0 %>
+  <%= render partial: "users/user", collection: @users %>
+<% else %>
+  <p>No users currently have this interest.</p>
+<% end %>
+  
