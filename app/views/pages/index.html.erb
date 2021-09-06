@@ -1,0 +1,12 @@
+<h1>Make Some New Friends.</h1>
+<h2>Find new friends to message and connect with.</h2>
+<p>
+<%= link_to "Get Started", signup_path %>
+<%= link_to "Browse Users", users_path %>
+</p>
+
+<ul>
+<% @users.each do |user| %>
+  <li><%= link_to user.username, user_path(user) %></li>
+<% end %>
+</ul>

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authorize_ownership, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.ordered_newest
   end
 
   def new
