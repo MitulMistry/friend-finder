@@ -15,13 +15,10 @@ RSpec.describe "Sessions", type: :request do
       user = create(:user, password: password)
 
       post sessions_path, params: {
-        user: {
-          username: user.username,
-          password: password
-        }
+        username: user.username,
+        password: password
       }
 
-      expect(response).to have_http_status(200)
       expect(response).to redirect_to(user_path(user))
       follow_redirect!
 
