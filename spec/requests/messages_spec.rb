@@ -38,7 +38,7 @@ RSpec.describe "Messages", type: :request do
       user2 = create(:user)
 
       get new_user_message_path(user2)
-      expect(response.body).to include("Compose Message")
+      expect(response.body).to include("New Message")
       expect(response.body).to include(user2.username)
     end
   end
@@ -47,19 +47,19 @@ RSpec.describe "Messages", type: :request do
     it "creates new message" do
       user1 = create_user_and_login
       user2 = create(:user)
+      message = build(:message)
       
       post messages_path, params: {
         message: {
-          sender: user1.id,
-          recipient: user2.id,
-          body: "Test message."
+          recipient_user_id: user2.id,
+          body: message.body
         }
       }
 
       expect(response).to redirect_to(sent_path)
       follow_redirect!
 
-      expect(respone.body).to include("Sent")
+      expect(response.body).to include("Sent")
       expect(response.body).to include(message.body)
     end
   end

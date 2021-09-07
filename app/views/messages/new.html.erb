@@ -1,0 +1,15 @@
+<h1>New Message</h1>
+
+<h3>To: <%= @recipient.username %></h3>
+<%= form_for @message do |f| %>
+  <%= f.hidden_field :recipient_user_id, value: @recipient.id %>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send" %>
+  </div>
+<% end %>

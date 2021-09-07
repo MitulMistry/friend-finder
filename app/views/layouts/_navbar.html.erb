@@ -7,6 +7,7 @@
     <% else %>
       <%= link_to "Users", users_path %>
       <%= link_to "Interests", interests_path %>
+      <%= link_to "Messages", received_path %>
       <%= link_to "Profile", user_path(current_user) %>
       <%= link_to "Logout", logout_path, method: :delete %>
     <% end %>

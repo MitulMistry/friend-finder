@@ -11,5 +11,8 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe MessagesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "provides readable date and time" do
+    date_time = DateTime.parse("3rd Feb 2001 04:05:06+03:30")
+    expect(helper.readable_datetime(date_time)).to eq("Saturday, Feb 03, 2001,  4:05 AM")
+  end
 end

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:create, :destroy]
 
   scope 'messages' do
-    get 'received', to: 'messages#receieved'
+    get 'received', to: 'messages#received'
     get 'sent', to: 'messages#sent'
   end
 

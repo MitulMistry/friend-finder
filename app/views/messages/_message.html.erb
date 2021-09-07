@@ -1,0 +1,10 @@
+<div class="message-card">
+<% if message.sender != current_user %>
+  <h4>From: <%= link_to message.sender.username, message.sender %></h4>  
+<% else %>
+  <h4>To: <%= link_to message.recipient.username, message.recipient %></h4>
+<% end %>
+  <p><%= message.body %></p>
+  <p><%= readable_datetime(message.created_at) %></p>
+  <p><%= link_to "Reply", new_user_message_path(message.recipient) %></p>
+</div>
