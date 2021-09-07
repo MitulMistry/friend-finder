@@ -36,6 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    logout
     redirect_to root_path, notice: 'Account deleted'
   end
 
