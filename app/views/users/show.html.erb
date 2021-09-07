@@ -11,6 +11,10 @@
 </p>
 <% end %>
 
-<% if logged_in? && @user != current_user %>
-<p><%= link_to "Send a Message", new_user_message_path(@user), class: "send-message-btn" %></p>
+<% if logged_in?%>
+  <% if @user != current_user %>
+    <p><%= link_to "Send a Message", new_user_message_path(@user), class: "dark-btn" %></p>
+  <% else %>
+    <p><%= link_to "Edit Profile", edit_user_path(@user), class: "dark-btn" %></p>
+  <% end %>
 <% end %>

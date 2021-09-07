@@ -70,13 +70,15 @@ RSpec.describe "Users", type: :request do
     it "updates user" do
       user = create_user_and_login
       user_editted = build(:user)
+      interest = create(:interest)
 
       patch user_path(user), params: {
         user: {
           username: user_editted.username,
           email: user_editted.email,
           bio: user_editted.bio,
-          password: "editted"
+          password: "editted",
+          interest_ids: [interest.id]
         }
       }
 
@@ -86,6 +88,7 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(200)
       expect(response.body).to include(user_editted.username)
       expect(response.body).to include(user_editted.bio)
+      expect(response.body).to include(interest.name)
     end
   end
 

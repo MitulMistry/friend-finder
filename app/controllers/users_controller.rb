@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       redirect_to @user, notice: 'Account created successfully'
     else
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @interests = Interest.ordered_alphabetized
   end
 
   def update
@@ -55,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :bio, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :bio, :password, :password_confirmation, interest_ids: [])
   end
 end
