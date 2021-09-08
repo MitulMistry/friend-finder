@@ -1,12 +1,16 @@
-<h1>Make Some New Friends.</h1>
-<h2>Find new friends to message and connect with.</h2>
-<p>
-<%= link_to "Get Started", signup_path %>
-<%= link_to "Browse Users", users_path %>
-</p>
+<div class="jumbotron">
+  <h1>Make Some New Friends.</h1>
+  <h2>Find new friends to message and connect with.</h2>
+  <p>
+  <% if !logged_in? %>
+    <%= link_to "Get Started", signup_path, class: "btn-dark" %>
+  <% end %>
+  <%= link_to "Browse Users", users_path, class: "btn-light" %>
+  </p>
 
-<ul>
-<% @users.each do |user| %>
-  <li><%= link_to user.username, user_path(user) %></li>
-<% end %>
-</ul>
+  <p class="users">
+  <% @users.each do |user| %>
+    <%= link_to user.username, user_path(user) %>
+  <% end %>
+  </p>
+</div>

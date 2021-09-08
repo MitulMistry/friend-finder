@@ -1,0 +1,206 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+// CSS Reset
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+html {
+  // Set height to stretch background gradient across whole page
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body {
+  background: white;
+  background: linear-gradient(180deg, rgba(132,235,214,1) 0%, rgba(255,255,255,1) 50%) no-repeat bottom;
+
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+a:hover {
+  color: #067458;
+}
+
+.header {  
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+
+  a {
+    display: block;
+    padding: 10px;
+  }
+
+  a:hover {
+    color: #067458;
+  }
+}
+
+.header-nav {
+  // width: 1000px;
+  margin: auto;
+}
+
+.header-nav-logo {
+  float: left;
+}
+
+.header-nav-logo > a {
+  font-size: 1.7rem;
+  padding-top: 5px;
+}
+
+// .header-nav-logo > a:hover {
+// }
+
+.header-nav-list {
+  float: right;
+}
+
+.header-nav-list > li {
+  float: left;
+}
+
+.header-nav-list > li > a {
+  margin-left: 2.5rem;
+}
+
+// .header-nav-list > li > a:hover {
+// }
+
+.content {
+  max-width: 800px;
+  margin: auto;
+  min-height: 400px;
+}
+
+.content > p {
+  padding: 1rem 0;
+}
+
+.btn {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: .375rem 1.25rem;
+	font-size: 1rem;
+	border-radius: 1.5rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-dark {
+  @extend .btn;
+  color: #fff;
+	background-color: black;
+	border-color: black;
+}
+
+a.btn-dark:hover {
+  color:#c5c5c5;
+}
+
+.btn-light {
+  @extend .btn;
+  color: black;
+	background-color: #fff;
+	border-color: #fff;
+}
+
+a.btn-light:hover {
+  color:#5a5a5a;
+}
+
+.jumbotron {
+  text-align: center;
+  padding-top: 8rem;
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: .5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem
+  }
+
+  p {
+    padding-bottom: 3rem;
+  }
+
+  .btn-dark {
+    margin-right: 2rem;
+  }
+
+  a {
+    font-size: 1.1rem;
+    padding: .5rem 1.5rem;
+  }
+
+  .users {
+    padding-top: 3rem;
+  }
+}
+
+.footer {
+  text-align: center;
+  color: #383a39;
+  margin-top: 10rem;
+}
