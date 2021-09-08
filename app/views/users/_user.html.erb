@@ -3,11 +3,9 @@
   <p><%= user_truncated_bio(user) %></p>
   <% if !user.interests.empty? %>
   <p>
-    <ul>
-    <% user.interests.each do |interest| %>
-      <li><%= link_to interest.name, interest, class: "interest-badge" %></li>
-    <% end %>
-    <ul>
+  <% user.interests.each do |interest| %>
+    <%= link_to interest.name, interest, class: "btn-green-small" %>
+  <% end %>
   </p>
   <% end %>
 </div>

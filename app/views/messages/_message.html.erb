@@ -6,5 +6,9 @@
 <% end %>
   <p><%= message.body %></p>
   <p><%= readable_datetime(message.created_at) %></p>
-  <p><%= link_to "Reply", new_user_message_path(message.recipient) %></p>
+<% if message.sender != current_user %>
+  <p><%= link_to "Reply", new_user_message_path(message.sender), class: "btn-dark-small" %></p>
+<% else %>
+  <p><%= link_to "Reply", new_user_message_path(message.recipient), class: "btn-dark-small" %></p>
+<% end %>
 </div>

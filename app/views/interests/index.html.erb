@@ -1,6 +1,8 @@
-<h1>Interests</h1>
-<ul>
-  <% @interests.each do |interest| %>
-    <li><%= link_to interest.name, interest %></li>
-  <% end %>
-</ul>
+<div class="interests-index">
+  <h1>Interests</h1>
+  <p>
+    <% @interests.each do |interest| %>
+      <%= link_to interest.name, interest, class: "btn-green-small" %>
+    <% end %>
+  </p>
+</div>

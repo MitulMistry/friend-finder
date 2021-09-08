@@ -1,2 +1,2 @@
-<p>Received <%= link_to "Sent", sent_path %></p>
+<p><span class="btn-light">Received</span> &nbsp <%= link_to "Sent", sent_path, class: "btn-dark" %></p>
 <%= render partial: "message", collection: @messages %>
