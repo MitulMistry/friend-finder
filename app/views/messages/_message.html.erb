@@ -1,8 +1,10 @@
 <div class="message-card">
 <% if message.sender != current_user %>
-  <h4>From: <%= link_to message.sender.username, message.sender %></h4>  
+  <h4>From: <%= link_to message.sender.username, message.sender %></h4>
+  <%= link_to (user_message_avatar(message.sender)), user_path(message.sender) %>
 <% else %>
   <h4>To: <%= link_to message.recipient.username, message.recipient %></h4>
+  <%= link_to (user_message_avatar(message.recipient)), user_path(message.recipient) %>
 <% end %>
   <p><%= message.body %></p>
   <p><%= readable_datetime(message.created_at) %></p>

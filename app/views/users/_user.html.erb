@@ -1,5 +1,6 @@
 <div class="user-card">
   <h4><%= link_to user.username, user, class: "card-link" %></h4>
+  <%= link_to (user_card_avatar(user)), user_path(user) %>
   <p><%= user_truncated_bio(user) %></p>
   <% if !user.interests.empty? %>
   <p>

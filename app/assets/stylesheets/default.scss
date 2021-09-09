@@ -180,6 +180,29 @@ a.btn-light:hover {
   padding: .15rem .75rem;
 }
 
+.avatar-img {
+  border-radius: 50%;
+}
+
+.card-img {
+  @extend .avatar-img;  
+  max-width: 150px;
+}
+
+.profile-img {
+  @extend .avatar-img;
+  max-width: 300px;
+}
+
+.message-img {
+  @extend .avatar-img;
+  max-width: 75px;
+}
+
+.index-user {
+  display: inline-block;
+}
+
 .card {
   margin-bottom: 3rem;
 

@@ -61,6 +61,7 @@ end
     user.interests << interest
   end
 
+  user.avatar_from_url(Faker::LoremFlickr.image(size: "500x500", search_terms: ['portrait']))
   user.save
 end
 

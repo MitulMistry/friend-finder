@@ -8,9 +8,12 @@
   <%= link_to "Browse Users", users_path, class: "btn-light" %>
   </p>
 
-  <p class="users">
+  <div class="users">
   <% @users.each do |user| %>
-    <%= link_to user.username, user_path(user) %>
+    <div class="index-user">
+      <%= link_to (user_card_avatar(user)), user_path(user) %>
+      <p><%= link_to user.username, user_path(user) %></p>
+    </div>
   <% end %>
-  </p>
+  </div>
 </div>
